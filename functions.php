@@ -1,7 +1,11 @@
 <?php
 
 $groceries = array(
-              'veggie' => 'carrot',
+              'veggies' => array(
+                  'beets',
+                  'carrots',
+                  'tomatoes'
+                ),
               'fruit' => 'apple',
               'sweet' => 'chocolate',
               'meat' => 'lamb'
@@ -17,6 +21,16 @@ $clothes = array(
 
 function goShopping($arr) {
   foreach ($arr as $type => $value) {
-    echo '<strong>' . $type . ':</strong> ' . $value . '<br>';
+
+    echo '<strong>' . $type . ':</strong> ';
+
+    if ( is_array($value) ) {
+      foreach ($value as $val) {
+        echo $val . ', ';
+      }
+    } else {
+      echo $value;
+    }
+    echo '<br>';
   }
 }
