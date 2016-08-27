@@ -35,18 +35,18 @@ function goShopping($arr) {
     // Print the type, or key, of the array
     echo '<strong>' . $type . ':</strong> ';
 
+    // We need to account for the multidimensional array
+    // Check if the value is an array
     if ( is_array($value) ) {
 
-      // If the value is an array, loop through and echo it.
-      // Alternative syntax with colon and endforeach.
-      foreach ($value as $val):
+      // We want a comma separated list. There are many ways to do this in PHP.
+      // http://stackoverflow.com/questions/2435216/how-to-create-comma-separated-list-from-array-in-php
 
-        // Now, how not have after the last one in the list?
-        // There are many ways, and I don't feel like figuring it out. WordPress usually handles this.
-        // http://stackoverflow.com/questions/2435216/how-to-create-comma-separated-list-from-array-in-php
-        echo $val . ', ';
+      // This is the method I copied (yes, I did) from this post. You could also use a foreach loop as in the other answers.
 
-      endforeach;
+      // Here we manipulate the array object. I don't 100% understand how this works, but it does! And I've copy-pasted responsibly, removing the rtrim because it wasn't needed.
+      $string = implode(', ', $value);
+      echo $string;
 
     } else {
 
@@ -54,6 +54,7 @@ function goShopping($arr) {
       echo $value;
 
     }
+
     // Create a break between each list item
     echo '<br>';
   }
